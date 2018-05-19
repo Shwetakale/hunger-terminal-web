@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/header/header.js'
 import routes from './routes.js'
-import { BrowserRouter as Routes, Route} from "react-router-dom";
+import { BrowserRouter as Routes, Route, Switch} from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -11,7 +10,13 @@ class App extends Component {
       <div>
         <Header brandName="Hunger Terminal" />
          <Routes>
-          <Route exact path={routes[0].path} component={routes[0].component}/>
+           <Switch>
+           {
+              routes.map((route, index) => {
+                return <Route exact path={route.path} component={route.component} key={index}/>
+              })
+           }
+          </Switch>
         </Routes>
       </div>
     );
